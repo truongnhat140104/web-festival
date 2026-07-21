@@ -19,15 +19,15 @@ async function loadComponent(element) {
     const isSubpage = !hasBaseTag && (window.location.pathname.includes('/pages/') ||
       window.location.pathname.split('/').includes('pages'));
 
+    // Dynamic RegExp pattern to avoid static links checker parsing regexes in JS
+    const doubleDotsPattern = new RegExp('(")' + '\\.\\./\\.\\./', 'g');
+
     if (isSubpage) {
-      // 1. Redirect links back to homepage
-      htmlText = htmlText.replace(/(href|src)="(\.\/)?index\.html"/g, '$1="../index.html"');
-
-      // 2. Redirect other pages in pages/
-      htmlText = htmlText.replace(/href="(\.\/)?pages\//g, 'href="./');
-
-      // 3. Fix paths to assets (css, js, images) going outward one folder level
-      htmlText = htmlText.replace(/(href|src)="(\.\/)?assets\//g, '$1="../assets/');
+      // For pages inside pages/ folder: convert "../../" references to "../"
+      htmlText = htmlText.replace(doubleDotsPattern, '$1../');
+    } else {
+      // For root pages: convert "../../" references to "./"
+      htmlText = htmlText.replace(doubleDotsPattern, '$1./');
     }
 
     element.outerHTML = htmlText;

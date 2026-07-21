@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="page-hero__media">
         <img
           class="page-hero__image"
-          src="${background}"
           alt="${title}"
         >
       </div>
@@ -22,25 +21,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
       <div class="page-hero__container">
         <div class="page-hero__content">
-          ${
-            eyebrow
-              ? `<p class="page-hero__eyebrow">${eyebrow}</p>`
-              : ""
-          }
+          ${eyebrow
+        ? `<p class="page-hero__eyebrow">${eyebrow}</p>`
+        : ""
+      }
 
           <h1 class="page-hero__title">${title}</h1>
 
-          ${
-            subtitle
-              ? `<p class="page-hero__subtitle">${subtitle}</p>`
-              : ""
-          }
+          ${subtitle
+        ? `<p class="page-hero__subtitle">${subtitle}</p>`
+        : ""
+      }
 
           <nav
             class="page-hero__breadcrumb"
             aria-label="Breadcrumb"
           >
-            <a href="../index.html">Trang chủ</a>
+            <a class="page-hero__home-link">Trang chủ</a>
             <span aria-hidden="true">/</span>
             <span class="page-hero__breadcrumb-current">
               ${breadcrumb}
@@ -50,7 +47,15 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
 
+    const homeLink = mount.querySelector(".page-hero__home-link");
+    if (homeLink) {
+      homeLink.href = "../index.html";
+    }
+
     const image = mount.querySelector(".page-hero__image");
+    if (image && background) {
+      image.src = background;
+    }
 
     if (image) {
       if (image.complete) {

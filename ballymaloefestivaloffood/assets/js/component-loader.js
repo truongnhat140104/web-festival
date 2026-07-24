@@ -14,21 +14,14 @@ async function loadComponent(element) {
 
     let htmlText = await response.text();
 
-    // Tự động sửa lại link nếu trang đang hiển thị nằm trong thư mục pages/ và không có thẻ base
     const hasBaseTag = !!document.querySelector("base");
     const isSubpage = !hasBaseTag && (window.location.pathname.includes('/pages/') ||
       window.location.pathname.split('/').includes('pages'));
 
-    if (isSubpage) {
-      // 1. Chuyển hướng các link quay về trang chủ (index.html)
-      htmlText = htmlText.replace(/(href|src)="(\.\/)?index\.html"/g, '$1="../index.html"');
+    const basePrefix = isSubpage ? "../" : "./";
 
-      // 2. Chuyển hướng các trang con khác đang nằm cùng thư mục pages/
-      htmlText = htmlText.replace(/href="(\.\/)?pages\//g, 'href="./');
-
-      // 3. Sửa lại các đường dẫn assets (css, js, images) đi ngược ra ngoài 1 cấp
-      htmlText = htmlText.replace(/(href|src)="(\.\/)?assets\//g, '$1="../assets/');
-    }
+    // Chuẩn hóa đường dẫn tương đối ../../ trong component thành đường dẫn phù hợp với trang
+    htmlText = htmlText.replace(/(href|src)="\.\.\/\.\.\//g, '$1="' + basePrefix);
 
     element.outerHTML = htmlText;
   } catch (error) {

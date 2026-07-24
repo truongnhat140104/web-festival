@@ -255,7 +255,7 @@ function initializeLineupPage() {
       eventRow.innerHTML = `
         <div class="schedule-event__time">${event.time}</div>
         <div class="schedule-event__media">
-            <img class="schedule-event__image" src="${event.image}" alt="${event.title}" loading="lazy">
+            <img class="schedule-event__image" alt="${event.title}" loading="lazy">
         </div>
         <div class="schedule-event__content">
             <span class="schedule-event__badge ${badgeClass}">${event.type}</span>
@@ -265,6 +265,11 @@ function initializeLineupPage() {
             </p>
         </div>
       `;
+
+      const imgEl = eventRow.querySelector(".schedule-event__image");
+      if (imgEl) {
+        imgEl.src = event.image;
+      }
 
       if (event.href && event.href !== "#") {
         eventRow.addEventListener("click", () => {

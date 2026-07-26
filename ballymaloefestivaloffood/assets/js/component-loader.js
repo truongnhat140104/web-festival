@@ -23,7 +23,23 @@ async function loadComponent(element) {
     // Chuẩn hóa đường dẫn tương đối ../../ trong component thành đường dẫn phù hợp với trang
     htmlText = htmlText.replace(/(href|src)="\.\.\/\.\.\//g, '$1="' + basePrefix);
 
-    element.outerHTML = htmlText;
+    const temp = document.createElement("div");
+    temp.innerHTML = htmlText;
+    const newElement = temp.firstElementChild;
+
+    if (newElement) {
+      for (const [key, value] of Object.entries(element.dataset)) {
+        if (!newElement.dataset[key]) {
+          newElement.dataset[key] = value;
+        }
+      }
+      if (element.id && !newElement.id) {
+        newElement.id = element.id;
+      }
+      element.outerHTML = newElement.outerHTML;
+    } else {
+      element.outerHTML = htmlText;
+    }
   } catch (error) {
     console.error(error);
     element.innerHTML = `

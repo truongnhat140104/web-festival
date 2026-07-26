@@ -4,11 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.prod.website-files.com/6993543c5984cc663556ea4f/6998800b989cdfa945ebe25a_BFF-fav.png"
-        rel="shortcut icon" type="image/x-icon" />
+
+    <link
+        href="https://cdn.prod.website-files.com/6993543c5984cc663556ea4f/6998800b989cdfa945ebe25a_BFF-fav.png"
+        rel="shortcut icon"
+        type="image/x-icon"
+    >
 
     <title>Ballymaloe Festival of Food</title>
-    <meta name="description" content="Demo trang Home sử dụng HTML, CSS và JavaScript thuần.">
+    <meta
+        name="description"
+        content="Ballymaloe Festival of Food — festival programme, speakers, live stream, recipes, partners and tickets."
+    >
 
     <link rel="stylesheet" href="./assets/css/base.css">
     <link rel="stylesheet" href="./assets/css/header.css">
@@ -16,21 +23,117 @@
 </head>
 
 <body class="home-page">
-    <div data-component="./components/common/header.html"></div>
-    <main>
-        <div data-component="./components/home/hero.html"></div>
-        <div data-component="./components/home/festival-intro.html"></div>
-        <div data-component="./components/home/feature-cards.html"></div>
-        <div data-component="./components/home/why-bff.html"></div>
-        <div data-component="./components/home/tickets-banner.html"></div>
-        <div data-component="./components/home/live-stream.html"></div>
-        <div data-component="./components/home/speakers.html"></div>
-        <div data-component="./components/home/recipes-banner.html"></div>
-        <div data-component="./components/home/partners.html"></div>
-        <div data-component="./components/home/testimonials.html"></div>
-        <div data-component="./components/common/newsletter.html"></div>
-        <div data-component="./components/common/footer.html"></div>
+
+    <!-- Header tồn tại trực tiếp trong index.html để QA scanner nhận diện khung theme. -->
+    <header
+        id="site-header"
+        data-beautyos-section="header"
+        data-component="./components/common/header.html"
+    >
+        <div data-beautyos-block="header.nav"></div>
+    </header>
+
+    <main id="main-content">
+
+        <!-- Hero là section đầu tiên trong main. -->
+        <section
+            id="hero"
+            data-beautyos-section="hero"
+            data-component="./components/home/hero.html"
+        >
+            <div data-beautyos-block="hero.content" data-edit-id="hero.title"></div>
+        </section>
+
+        <section
+            id="festival-intro"
+            data-beautyos-section="about"
+            data-component="./components/home/festival-intro.html"
+        >
+            <div data-beautyos-block="about.intro"></div>
+        </section>
+
+        <section
+            id="feature-cards"
+            data-beautyos-section="features"
+            data-component="./components/home/feature-cards.html"
+        >
+            <div data-beautyos-block="features.grid"></div>
+        </section>
+
+        <section
+            id="why-bff"
+            data-beautyos-section="about-details"
+            data-component="./components/home/why-bff.html"
+        >
+            <div data-beautyos-block="about.details"></div>
+        </section>
+
+        <section
+            id="tickets"
+            data-beautyos-section="tickets"
+            data-component="./components/home/tickets-banner.html"
+        >
+            <div data-beautyos-block="tickets.banner"></div>
+        </section>
+
+        <section
+            id="live-stream"
+            data-beautyos-section="live-stream"
+            data-component="./components/home/live-stream.html"
+        >
+            <div data-beautyos-block="livestream.card"></div>
+        </section>
+
+        <section
+            id="speakers"
+            data-beautyos-section="speakers"
+            data-component="./components/home/speakers.html"
+        >
+            <div data-beautyos-block="speakers.slider"></div>
+        </section>
+
+        <section
+            id="recipes"
+            data-beautyos-section="recipes"
+            data-component="./components/home/recipes-banner.html"
+        >
+            <div data-beautyos-block="recipes.banner"></div>
+        </section>
+
+        <section
+            id="partners"
+            data-beautyos-section="partners"
+            data-component="./components/home/partners.html"
+        >
+            <div data-beautyos-block="partners.grid"></div>
+        </section>
+
+        <section
+            id="testimonials"
+            data-beautyos-section="testimonials"
+            data-component="./components/home/testimonials.html"
+        >
+            <div data-beautyos-block="testimonials.slider"></div>
+        </section>
+
+        <section
+            id="newsletter"
+            data-beautyos-section="newsletter"
+            data-component="./components/common/newsletter.html"
+        >
+            <div data-beautyos-block="newsletter.form"></div>
+        </section>
+
     </main>
+
+    <!-- Footer nằm ngoài main và tồn tại trực tiếp để extractThemeShell nhận diện. -->
+    <footer
+        id="site-footer"
+        data-beautyos-section="footer"
+        data-component="./components/common/footer.html"
+    >
+        <div data-beautyos-block="footer.content"></div>
+    </footer>
 
     <script src="./assets/js/component-loader.js"></script>
     <script src="./assets/js/header.js"></script>

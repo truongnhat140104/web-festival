@@ -29,14 +29,73 @@
 
 <body class="home-page">
 
-    <!-- Header (Loaded once) -->
-    <div data-component="./components/common/header.html"></div>
+    <!-- Header -->
+    <header
+        id="site-header"
+        data-beautyos-section="header"
+        data-component="./components/common/header.html"
+    >
+        <div data-beautyos-block="header.nav"></div>
+    </header>
 
-    <!-- Main Page Content Fragment -->
-    <main id="page-content" class="page-main"></main>
+    <!-- Main Page Content -->
+    <main id="main-content" class="page-main">
 
-    <!-- Footer (Loaded once) -->
-    <div data-component="./components/common/footer.html"></div>
+        <!-- Hero Section -->
+        <section
+            id="hero"
+            data-beautyos-section="hero"
+            data-component="./components/home/hero.html"
+        >
+            <div data-beautyos-block="hero.content"></div>
+        </section>
+
+        <!-- Partners Section -->
+        <section
+            id="partners"
+            data-beautyos-section="partners"
+            data-component="./components/home/partners.html"
+        >
+            <div data-beautyos-block="partners.grid"></div>
+        </section>
+
+        <!-- About Section -->
+        <section
+            id="about-festival"
+            data-beautyos-section="about"
+            data-component="./components/home/about-festival.html"
+        >
+            <div data-beautyos-block="about.content"></div>
+        </section>
+
+        <!-- Featured Events Section -->
+        <section
+            id="featured-events"
+            data-beautyos-section="featured-events"
+            data-component="./components/home/featured-events.html"
+        >
+            <div data-beautyos-block="featured.grid"></div>
+        </section>
+
+        <!-- Recent Programmes Section -->
+        <section
+            id="recent-programmes"
+            data-beautyos-section="recent-programmes"
+            data-component="./components/home/recent-programmes.html"
+        >
+            <div data-beautyos-block="recent.grid"></div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer
+        id="site-footer"
+        data-beautyos-section="footer"
+        data-component="./components/common/footer.html"
+    >
+        <div data-beautyos-block="footer.content"></div>
+    </footer>
 
     <!-- Sidebar (Loaded once) -->
     <div data-component="./components/common/sidebar.html"></div>

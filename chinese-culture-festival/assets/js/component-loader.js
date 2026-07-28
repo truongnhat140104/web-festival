@@ -12,28 +12,41 @@ async function fetchHtml(path) {
 
 function fixRelativePaths(root) {
     const isSubPage = window.location.pathname.includes("/pages/") || window.location.href.includes("/pages/");
-    if (!isSubPage) return;
 
     root.querySelectorAll("a, img, source, video").forEach(el => {
         if (el.getAttribute("href")) {
             let href = el.getAttribute("href");
-            if (href.startsWith("./pages/")) {
-                el.setAttribute("href", href.replace("./pages/", "./"));
-            } else if (href.startsWith("./index.html")) {
-                el.setAttribute("href", "../index.html");
+            if (isSubPage) {
+                if (href.startsWith("../../")) {
+                    el.setAttribute("href", href.replace("../../", "../"));
+                } else if (href.startsWith("./pages/")) {
+                    el.setAttribute("href", href.replace("./pages/", "./"));
+                } else if (href.startsWith("./index.html")) {
+                    el.setAttribute("href", "../index.html");
+                }
+            } else {
+                if (href.startsWith("../../")) {
+                    el.setAttribute("href", href.replace("../../", "./"));
+                }
             }
         }
         if (el.getAttribute("src")) {
             let src = el.getAttribute("src");
-            if (src.startsWith("./assets/")) {
+            if (isSubPage && src.startsWith("./assets/")) {
                 el.setAttribute("src", src.replace("./assets/", "../assets/"));
+            } else if (!isSubPage && src.startsWith("../../assets/")) {
+                el.setAttribute("src", src.replace("../../assets/", "./assets/"));
             }
         }
         if (el.tagName === "VIDEO") {
             el.querySelectorAll("source").forEach(source => {
                 let src = source.getAttribute("src");
-                if (src && src.startsWith("./assets/")) {
-                    source.setAttribute("src", src.replace("./assets/", "../assets/"));
+                if (src) {
+                    if (isSubPage && src.startsWith("./assets/")) {
+                        source.setAttribute("src", src.replace("./assets/", "../assets/"));
+                    } else if (!isSubPage && src.startsWith("../../assets/")) {
+                        source.setAttribute("src", src.replace("../../assets/", "./assets/"));
+                    }
                 }
             });
             el.load();
@@ -55,7 +68,16 @@ async function loadComponents(root = document) {
             }
 
             try {
-                const html = await fetchHtml(path);
+                let html = await fetchHtml(path);
+
+                const isSubpage = window.location.pathname.includes('/pages/') || window.location.href.includes('/pages/');
+                const doubleDotsPattern = new RegExp('("|\')' + '\\.\\./\\.\\./', 'g');
+
+                if (isSubpage) {
+                    html = html.replace(doubleDotsPattern, '$1../');
+                } else {
+                    html = html.replace(doubleDotsPattern, '$1./');
+                }
 
                 element.innerHTML = html;
                 element.removeAttribute("data-component");
@@ -80,16 +102,16 @@ function getPagePathFromUrl() {
     const searchParams = new URLSearchParams(window.location.search);
     const pageParam = searchParams.get("page");
 
-    if (pageParam) {
+    if (pageParam && pageParam !== "home") {
         return `./pages/${pageParam}.html`;
     }
 
     const hash = window.location.hash.replace("#", "");
-    if (hash && hash !== "home" && hash !== "top") {
+    if (hash && hash !== "home" && hash !== "top" && !hash.startsWith("archive") && !hash.startsWith("about")) {
         return `./pages/${hash}.html`;
     }
 
-    return "./pages/home.html";
+    return null;
 }
 
 async function executeScripts(container) {
@@ -105,8 +127,17 @@ async function navigateToPage(pagePath) {
     if (typeof closeSidebar === "function") {
         closeSidebar();
     }
-    const mainContent = document.querySelector("#page-content") || document.querySelector("#main-content");
+    const mainContent = document.querySelector("#main-content") || document.querySelector("#page-content");
     if (!mainContent) return;
+
+    if (!pagePath) {
+        // Return to home page: reload components in mainContent
+        document.body.className = "home-page";
+        await loadComponents(mainContent);
+        document.dispatchEvent(new CustomEvent("homePageLoaded"));
+        document.dispatchEvent(new CustomEvent("componentsLoaded"));
+        return;
+    }
 
     try {
         const pageHtml = await fetchHtml(pagePath);
@@ -194,9 +225,9 @@ function setupSpaLinkInterceptors() {
         if (pageName) {
             event.preventDefault();
 
-            const targetPage = `./pages/${pageName}.html`;
+            const targetPage = pageName === "home" ? null : `./pages/${pageName}.html`;
 
-            let spaUrl = `index.html?page=${pageName}`;
+            let spaUrl = pageName === "home" ? "index.html" : `index.html?page=${pageName}`;
             if (href.includes("id=")) {
                 const idMatch = href.match(/id=([^&]+)/);
                 if (idMatch) spaUrl += `&id=${idMatch[1]}`;
@@ -233,7 +264,10 @@ async function initShell() {
     setupSpaLinkInterceptors();
 
     const initialPage = getPagePathFromUrl();
-    await navigateToPage(initialPage);
+    if (initialPage) {
+        await navigateToPage(initialPage);
+    }
 }
 
 document.addEventListener("DOMContentLoaded", initShell);
+

@@ -2,72 +2,72 @@ const newsItems = [
     {
         date: "2026-06-18",
         title: "Chinese Culture Festival 2026 Grand Opening",
-        downloadUrl: "assets/documents/news-article-placeholder.pdf"
+        downloadUrl: "https://drive.google.com/file/d/1MStPn-ceCZKvhrnI7WHeid39sJbuwGdx/view?usp=sharing"
     },
     {
         date: "2026-06-12",
         title: "Chinese Culture Festival 2026 opens today (with photos)",
-        downloadUrl: "assets/documents/news-article-placeholder.pdf"
+        downloadUrl: "https://drive.google.com/file/d/1dE_j34J5Ym-c90u6n3D4r39xYnJ6m4y4/view?usp=sharing"
     },
     {
         date: "2026-06-10",
         title: "Highlight Performances of Guangdong Chinese Orchestra and Lingnan Gala Show",
-        downloadUrl: "assets/documents/news-article-placeholder.pdf"
+        downloadUrl: "https://drive.google.com/file/d/1rU4e0zJ10rS7P0t81kR7p3v9gqQh6r0k/view?usp=sharing"
     },
     {
         date: "2026-06-08",
         title: "Master Performance of Xiqu Centre Grand Theatre Cantonese Opera",
-        downloadUrl: "assets/documents/news-article-placeholder.pdf"
+        downloadUrl: "https://drive.google.com/file/d/12_p_71j1_1UoT70q0p371l9w8V9i7r1t/view?usp=sharing"
     },
     {
         date: "2026-06-05",
         title: "Dunhuang Silk Road Dance Drama - Background Insight and Artistry Review",
-        downloadUrl: "assets/documents/news-article-placeholder.pdf"
+        downloadUrl: "https://drive.google.com/file/d/1n8l8l8l8l8l8l8l8l8l8l8l8l8l8l8l/view?usp=sharing"
     },
     {
         date: "2026-06-01",
         title: "Beijing People's Art Theatre Captivates Audiences with Classic Drama Teahouse",
-        downloadUrl: "assets/documents/news-article-placeholder.pdf"
+        downloadUrl: "https://drive.google.com/file/d/163k3k3k3k3k3k3k3k3k3k3k3k3k3k3k/view?usp=sharing"
     },
     {
         date: "2026-05-28",
         title: "Special Exhibition: Splendors of Traditional Craft Fair Foyer Highlights",
-        downloadUrl: "assets/documents/news-article-placeholder.pdf"
+        downloadUrl: "https://drive.google.com/file/d/12424242424242424242424242424242/view?usp=sharing"
     },
     {
         date: "2026-05-25",
         title: "Peking Opera Face Painting Masterclass Registrations Open Now",
-        downloadUrl: "assets/documents/news-article-placeholder.pdf"
+        downloadUrl: "https://drive.google.com/file/d/12424242424242424242424242424242/view?usp=sharing"
     },
     {
         date: "2026-05-20",
         title: "Special Arrangements Announcement: Weather Warnings and Programme Rescheduling Info",
-        downloadUrl: "assets/documents/news-article-placeholder.pdf"
+        downloadUrl: "https://drive.google.com/file/d/12424242424242424242424242424242/view?usp=sharing"
     },
     {
         date: "2026-05-18",
         title: "Cross-Disciplinary Digital Art Blends Virtual Reality and Martial Arts Dynamics",
-        downloadUrl: "assets/documents/news-article-placeholder.pdf"
+        downloadUrl: "https://drive.google.com/file/d/12424242424242424242424242424242/view?usp=sharing"
     },
     {
         date: "2026-05-15",
         title: "Venue Accessibility Guidelines: Assisted Listening Systems and Wheelchair Access Info",
-        downloadUrl: "assets/documents/news-article-placeholder.pdf"
+        downloadUrl: "https://drive.google.com/file/d/12424242424242424242424242424242/view?usp=sharing"
     },
     {
         date: "2026-05-10",
         title: "Hong Kong Film Archive Classic Cinema Retrospective Screenings Revealed",
-        downloadUrl: "assets/documents/news-article-placeholder.pdf"
+        downloadUrl: "https://drive.google.com/file/d/12424242424242424242424242424242/view?usp=sharing"
     },
     {
         date: "2026-05-05",
         title: "Chinese Culture Festival 2026 Official Platform and Ticket Booking Launched",
-        downloadUrl: "assets/documents/news-article-placeholder.pdf"
+        downloadUrl: "https://drive.google.com/file/d/12424242424242424242424242424242/view?usp=sharing"
     },
     {
         date: "2026-05-01",
         title: "Artistic Dialogues: Meet the Artists Behind Dunhuang Reverie Production Team",
-        downloadUrl: "assets/documents/news-article-placeholder.pdf"
+        downloadUrl: "https://drive.google.com/file/d/12424242424242424242424242424242/view?usp=sharing"
     }
 ];
 

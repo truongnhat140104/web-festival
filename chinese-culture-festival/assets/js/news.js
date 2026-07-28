@@ -2,72 +2,72 @@ const newsItems = [
     {
         date: "2026-06-18",
         title: "Chinese Culture Festival 2026 Grand Opening",
-        downloadUrl: "./assets/documents/news-article-placeholder.pdf"
+        downloadUrl: "assets/documents/news-article-placeholder.pdf"
     },
     {
         date: "2026-06-12",
         title: "Chinese Culture Festival 2026 opens today (with photos)",
-        downloadUrl: "./assets/documents/news-article-placeholder.pdf"
+        downloadUrl: "assets/documents/news-article-placeholder.pdf"
     },
     {
         date: "2026-06-10",
         title: "Highlight Performances of Guangdong Chinese Orchestra and Lingnan Gala Show",
-        downloadUrl: "./assets/documents/news-article-placeholder.pdf"
+        downloadUrl: "assets/documents/news-article-placeholder.pdf"
     },
     {
         date: "2026-06-08",
         title: "Master Performance of Xiqu Centre Grand Theatre Cantonese Opera",
-        downloadUrl: "./assets/documents/news-article-placeholder.pdf"
+        downloadUrl: "assets/documents/news-article-placeholder.pdf"
     },
     {
         date: "2026-06-05",
         title: "Dunhuang Silk Road Dance Drama - Background Insight and Artistry Review",
-        downloadUrl: "./assets/documents/news-article-placeholder.pdf"
+        downloadUrl: "assets/documents/news-article-placeholder.pdf"
     },
     {
         date: "2026-06-01",
         title: "Beijing People's Art Theatre Captivates Audiences with Classic Drama Teahouse",
-        downloadUrl: "./assets/documents/news-article-placeholder.pdf"
+        downloadUrl: "assets/documents/news-article-placeholder.pdf"
     },
     {
         date: "2026-05-28",
         title: "Special Exhibition: Splendors of Traditional Craft Fair Foyer Highlights",
-        downloadUrl: "./assets/documents/news-article-placeholder.pdf"
+        downloadUrl: "assets/documents/news-article-placeholder.pdf"
     },
     {
         date: "2026-05-25",
         title: "Peking Opera Face Painting Masterclass Registrations Open Now",
-        downloadUrl: "./assets/documents/news-article-placeholder.pdf"
+        downloadUrl: "assets/documents/news-article-placeholder.pdf"
     },
     {
         date: "2026-05-20",
         title: "Special Arrangements Announcement: Weather Warnings and Programme Rescheduling Info",
-        downloadUrl: "./assets/documents/news-article-placeholder.pdf"
+        downloadUrl: "assets/documents/news-article-placeholder.pdf"
     },
     {
         date: "2026-05-18",
         title: "Cross-Disciplinary Digital Art Blends Virtual Reality and Martial Arts Dynamics",
-        downloadUrl: "./assets/documents/news-article-placeholder.pdf"
+        downloadUrl: "assets/documents/news-article-placeholder.pdf"
     },
     {
         date: "2026-05-15",
         title: "Venue Accessibility Guidelines: Assisted Listening Systems and Wheelchair Access Info",
-        downloadUrl: "./assets/documents/news-article-placeholder.pdf"
+        downloadUrl: "assets/documents/news-article-placeholder.pdf"
     },
     {
         date: "2026-05-10",
         title: "Hong Kong Film Archive Classic Cinema Retrospective Screenings Revealed",
-        downloadUrl: "./assets/documents/news-article-placeholder.pdf"
+        downloadUrl: "assets/documents/news-article-placeholder.pdf"
     },
     {
         date: "2026-05-05",
         title: "Chinese Culture Festival 2026 Official Platform and Ticket Booking Launched",
-        downloadUrl: "./assets/documents/news-article-placeholder.pdf"
+        downloadUrl: "assets/documents/news-article-placeholder.pdf"
     },
     {
         date: "2026-05-01",
         title: "Artistic Dialogues: Meet the Artists Behind Dunhuang Reverie Production Team",
-        downloadUrl: "./assets/documents/news-article-placeholder.pdf"
+        downloadUrl: "assets/documents/news-article-placeholder.pdf"
     }
 ];
 
@@ -101,11 +101,11 @@ function renderNewsRow(item) {
     return `
         <article class="news-row">
             <span class="news-row__date">${formattedDate}</span>
-            <a class="news-row__title-link" href="${item.downloadUrl}" target="_blank" rel="noopener noreferrer">
+            <a class="news-row__title-link" data-doc-link="${item.downloadUrl}" target="_blank" rel="noopener noreferrer">
                 ${item.title}
             </a>
             <div class="news-row__download">
-                <a class="news-row__download-link" href="${item.downloadUrl}" target="_blank" rel="noopener noreferrer" aria-label="Download PDF">
+                <a class="news-row__download-link" data-doc-link="${item.downloadUrl}" target="_blank" rel="noopener noreferrer" aria-label="Download PDF">
                     <i class="fa fa-download" aria-hidden="true"></i>
                 </a>
             </div>
@@ -133,6 +133,9 @@ function renderNewsPage(pageNumber) {
 
     // Render Rows
     listContainer.innerHTML = pageItems.map(renderNewsRow).join("");
+    listContainer.querySelectorAll("[data-doc-link]").forEach(el => {
+        el.setAttribute("href", el.dataset.docLink);
+    });
 
     // Render Pagination Controls
     let paginationHtml = "";
@@ -169,7 +172,7 @@ function renderNewsPage(pageNumber) {
             if (!isNaN(targetPage)) {
                 // Update URL without page refresh
                 if (window.history && window.history.replaceState) {
-                    const newUrl = `./index.html?page=news&newsPage=${targetPage}`;
+                    const newUrl = `index.html?page=news&newsPage=${targetPage}`;
                     window.history.replaceState(null, "", newUrl);
                 }
 

@@ -24,7 +24,7 @@ function renderGenreCard(item) {
     return `
         <article class="genre-card">
             <div class="genre-card__image-wrap">
-                <img src="${item.image}" alt="${item.title}" class="genre-card__image">
+                <img data-genre-img="${item.image}" alt="${item.title}" class="genre-card__image">
                 ${badgeHtml}
             </div>
 
@@ -40,7 +40,7 @@ function renderGenreCard(item) {
                     <span>${item.venue}</span>
                 </p>
 
-                <a href="./index.html?page=programme-detail&id=${item.id || 'hebei-bangzi-opera'}" class="genre-card__link">
+                <a href="../../index.html?page=programme-detail&id=${item.id || 'hebei-bangzi-opera'}" class="genre-card__link">
                     View Details <i class="fa fa-arrow-right" aria-hidden="true"></i>
                 </a>
             </div>
@@ -58,31 +58,18 @@ function updateGenreHero(data) {
     heroEl.style.setProperty("--hero-overlay", overlay);
     heroEl.style.setProperty("--hero-bg-position", bgPosition);
 
-    if (data.heroImage) {
-        const imgTest = new Image();
-        imgTest.onload = () => {
-            heroEl.style.setProperty("--hero-bg-image", `url("${data.heroImage}")`);
-            heroEl.style.backgroundImage = `${overlay}, url("${data.heroImage}")`;
-            heroEl.style.backgroundPosition = bgPosition;
-            heroEl.style.backgroundSize = "cover";
-            heroEl.style.backgroundRepeat = "no-repeat";
+    const bgContainer = heroEl.querySelector("[data-genre-hero-bg]");
+    if (bgContainer) {
+        let heroImgEl = bgContainer.querySelector("img");
+        if (!heroImgEl) {
+            heroImgEl = document.createElement("img");
+            heroImgEl.className = "genre-hero__bg-img";
+            bgContainer.appendChild(heroImgEl);
+        }
+        heroImgEl.onerror = () => {
+            heroImgEl.src = "../images/about-hero.webp";
         };
-        imgTest.onerror = () => {
-            const fallbackUrl = "./assets/images/about/about-background.png";
-            heroEl.style.setProperty("--hero-bg-image", `url("${fallbackUrl}")`);
-            heroEl.style.backgroundImage = `${overlay}, url("${fallbackUrl}")`;
-            heroEl.style.backgroundPosition = bgPosition;
-            heroEl.style.backgroundSize = "cover";
-            heroEl.style.backgroundRepeat = "no-repeat";
-        };
-        imgTest.src = data.heroImage;
-    } else {
-        const fallbackUrl = "./assets/images/about/about-background.png";
-        heroEl.style.setProperty("--hero-bg-image", `url("${fallbackUrl}")`);
-        heroEl.style.backgroundImage = `${overlay}, url("${fallbackUrl}")`;
-        heroEl.style.backgroundPosition = bgPosition;
-        heroEl.style.backgroundSize = "cover";
-        heroEl.style.backgroundRepeat = "no-repeat";
+        heroImgEl.src = data.heroImage || "../images/about-hero.webp";
     }
 
     // Update Titles & Subtitles
@@ -137,6 +124,9 @@ function initProgrammeGenrePage() {
 
         if (emptyEl) emptyEl.style.display = "none";
         gridContainer.innerHTML = itemsToRender.map(renderGenreCard).join("");
+        gridContainer.querySelectorAll("[data-genre-img]").forEach(img => {
+            img.src = img.dataset.genreImg;
+        });
     }
 
     renderList(currentItems);

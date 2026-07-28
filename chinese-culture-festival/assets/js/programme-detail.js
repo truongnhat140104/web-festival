@@ -44,7 +44,7 @@ function initProgrammeDetailPage() {
                 <div class="programme-not-found" style="padding: 120px 20px; text-align: center;">
                     <h2 style="font-family: Georgia, serif; color: #57534f; margin-bottom: 16px;">Không tìm thấy thông tin chương trình</h2>
                     <p style="color: #777777; margin-bottom: 24px;">Rất tiếc, chương trình bạn đang tìm kiếm không tồn tại hoặc đã bị gỡ bỏ.</p>
-                    <a href="./index.html" style="display: inline-block; padding: 12px 28px; background: #008b4a; color: #ffffff; border-radius: 999px; text-decoration: none; font-weight: 600;">Quay lại Trang chủ</a>
+                    <a href="../../index.html" style="display: inline-block; padding: 12px 28px; background: #008b4a; color: #ffffff; border-radius: 999px; text-decoration: none; font-weight: 600;">Quay lại Trang chủ</a>
                 </div>
             `;
         }

@@ -667,7 +667,7 @@ img.about-festival__artwork,
     height: 420px;
 
     background-image:
-        url("../images/home/programme-mountain.webp");
+        url("../images/home/ccf-about-pattern.png");
 
     background-position: left center;
 }
@@ -680,7 +680,7 @@ img.about-festival__artwork,
     height: 310px;
 
     background-image:
-        url("../images/home/programme-tree.webp");
+        url("../images/home/ccf-about-pattern.png");
 
     background-position: right bottom;
 }
@@ -726,7 +726,7 @@ img.about-festival__artwork,
     height: 520px;
 
     background-image:
-        url("../images/home/recent-programme-tree.webp");
+        url("../images/home/ccf-about-pattern.png");
 
     background-repeat: no-repeat;
     background-position: right top;

@@ -4,7 +4,7 @@ const PROGRAMME_DETAIL_DATA = {
         title: "Hebei Bangzi Opera Theatre of Hebei Province",
         genre: "Chinese Opera",
         genreSlug: "chinese-opera",
-        heroImage: "./assets/images/programmes/hebei-bangzi-hero.webp",
+        heroImage: "./assets/images/programme-genres/opera-hero.webp",
         date: "3 — 5.7.2026 (Fri — Sun)",
         time: "7:15pm",
         venue: "Grand Theatre, Hong Kong Cultural Centre",

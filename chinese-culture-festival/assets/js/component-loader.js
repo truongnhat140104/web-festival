@@ -145,7 +145,7 @@ async function navigateToPage(pagePath) {
             <div class="page-error" style="padding: 100px 20px; text-align: center; font-family: Georgia, serif;">
                 <h2 style="color: #57534f; margin-bottom: 16px;">Không thể tải nội dung trang</h2>
                 <p style="color: #777777; margin-bottom: 24px;">Vui lòng kiểm tra lại kết nối hoặc quay về trang chủ.</p>
-                <a href="./index.html" style="display: inline-block; padding: 12px 28px; background: #008b4a; color: #fff; border-radius: 999px; text-decoration: none;">Quay về Trang chủ</a>
+                <a href="../../index.html" style="display: inline-block; padding: 12px 28px; background: #008b4a; color: #fff; border-radius: 999px; text-decoration: none;">Quay về Trang chủ</a>
             </div>
         `;
     }
@@ -196,7 +196,7 @@ function setupSpaLinkInterceptors() {
 
             const targetPage = `./pages/${pageName}.html`;
 
-            let spaUrl = `./index.html?page=${pageName}`;
+            let spaUrl = `index.html?page=${pageName}`;
             if (href.includes("id=")) {
                 const idMatch = href.match(/id=([^&]+)/);
                 if (idMatch) spaUrl += `&id=${idMatch[1]}`;

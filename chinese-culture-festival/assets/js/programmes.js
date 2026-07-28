@@ -9,8 +9,8 @@ const recentProgrammeData = [
         title:
             "The Hong Kong Jockey Club Series: Prosperity and Magnificence",
         image:
-            "./assets/images/home/programmes/programme-01.webp",
-        href: "#"
+            "assets/images/home/programmes/programme-01.webp",
+        href: "index.html?page=programme-detail"
     },
     {
         id: 2,
@@ -22,8 +22,8 @@ const recentProgrammeData = [
         title:
             "The Virtual Realm of Kingdom of Huai’an",
         image:
-            "./assets/images/home/programmes/programme-02.webp",
-        href: "#"
+            "assets/images/home/programmes/programme-02.webp",
+        href: "index.html?page=programme-detail"
     },
     {
         id: 3,
@@ -35,8 +35,8 @@ const recentProgrammeData = [
         title:
             "Exhibition Corner, Yuen Long Theatre",
         image:
-            "./assets/images/home/programmes/programme-03.webp",
-        href: "#"
+            "assets/images/home/programmes/programme-03.webp",
+        href: "index.html?page=programme-detail"
     },
     {
         id: 4,
@@ -48,8 +48,8 @@ const recentProgrammeData = [
         title:
             "Hong Kong Central Library Programme",
         image:
-            "./assets/images/home/programmes/programme-04.webp",
-        href: "#"
+            "assets/images/home/programmes/programme-04.webp",
+        href: "index.html?page=programme-detail"
     },
     {
         id: 5,
@@ -61,8 +61,8 @@ const recentProgrammeData = [
         title:
             "Luoyang Yu Opera Troupe Special Performance",
         image:
-            "./assets/images/home/programmes/programme-05.webp",
-        href: "#"
+            "assets/images/home/programmes/programme-05.webp",
+        href: "index.html?page=programme-detail"
     },
     {
         id: 6,
@@ -74,8 +74,8 @@ const recentProgrammeData = [
         title:
             "Grand Cantonese Opera Showcase",
         image:
-            "./assets/images/home/programmes/programme-06.webp",
-        href: "#"
+            "assets/images/home/programmes/programme-06.webp",
+        href: "index.html?page=programme-detail"
     },
     {
         id: 7,
@@ -87,8 +87,8 @@ const recentProgrammeData = [
         title:
             "Mid-Autumn Festival Lantern Gala",
         image:
-            "./assets/images/home/programmes/programme-07.webp",
-        href: "#"
+            "assets/images/home/programmes/programme-07.webp",
+        href: "index.html?page=programme-detail"
     }
 ];
 
@@ -193,9 +193,9 @@ function initializeRecentProgrammes() {
 
         programmeTrack.innerHTML = filtered.map(item => `
             <article class="programme-card">
-                <a class="programme-card__media" href="${escapeHtml(item.href)}">
+                <a class="programme-card__media" data-target-link="${escapeHtml(item.href)}">
                     <img
-                        src="${escapeHtml(item.image)}"
+                        data-card-img="${escapeHtml(item.image)}"
                         alt="${escapeHtml(item.title)}"
                         loading="lazy"
                         onerror="this.style.display='none';"
@@ -208,12 +208,19 @@ function initializeRecentProgrammes() {
                     <h3 class="programme-card__title">
                         ${escapeHtml(item.title)}
                     </h3>
-                    <a class="programme-card__link" href="${escapeHtml(item.href)}">
+                    <a class="programme-card__link" data-target-link="${escapeHtml(item.href)}">
                         View programme <span aria-hidden="true">→</span>
                     </a>
                 </div>
             </article>
         `).join("");
+
+        programmeTrack.querySelectorAll("[data-target-link]").forEach(el => {
+            el.setAttribute("href", el.dataset.targetLink);
+        });
+        programmeTrack.querySelectorAll("[data-card-img]").forEach(img => {
+            img.setAttribute("src", img.dataset.cardImg);
+        });
 
         updateProgrammeArrows(filtered.length);
     }

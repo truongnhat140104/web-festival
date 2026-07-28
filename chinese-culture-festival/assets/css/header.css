@@ -39,7 +39,7 @@ html {
             rgba(248, 244, 235, 0.94),
             rgba(248, 244, 235, 0.94)
         ),
-        url("../images/ccf-about-pattern.png");
+        url("../images/home/ccf-about-pattern.png");
 
     background-repeat: repeat;
     background-position: center;
@@ -217,7 +217,7 @@ html {
             rgba(248, 244, 235, 0.93),
             rgba(248, 244, 235, 0.93)
         ),
-        url("../images/common/ccf-about-pattern.png");
+        url("../images/home/ccf-about-pattern.png");
 
     background-repeat: repeat;
     background-position: center;
